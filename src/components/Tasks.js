@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import FormularioTarea from './FormularioTarea';
 import ModalTarea from './ModalTarea';
-import 'react-calendar/dist/Calendar.css'; // Asegúrate de importar el archivo CSS también
+import 'react-calendar/dist/Calendar.css';
 
 function Tasks() {
   const [selectedDate, setSelectedDate] = useState(new Date());
