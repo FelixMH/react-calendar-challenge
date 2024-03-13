@@ -15,9 +15,8 @@ function Tasks() {
     setShowForm(true);
   };
 
-  const handleAddTask = (title, description, url) => {
-    const newTask = { title, description, url, date: selectedDate };
-    setTasks([...tasks, newTask]);
+  const handleAddTask = (taskData) => {
+    setTasks([...tasks, taskData]);
     setShowForm(false);
   };
 
