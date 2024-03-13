@@ -1,23 +1,44 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css'; // Asegúrese de importar el archivo CSS también
+import FormularioTarea from './FormularioTarea';
+import ModalTarea from './ModalTarea';
+import 'react-calendar/dist/Calendar.css'; // Asegúrate de importar el archivo CSS también
 
-function App() {
-  const [date, setDate] = useState(new Date());
+function Tasks() {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [showForm, setShowForm] = useState(false);
+  const [tasks, setTasks] = useState([]);
+  const [selectedTask, setSelectedTask] = useState(null);
 
-  const onChange = date => {
-    setDate(date);
+  const handleDateChange = date => {
+    setSelectedDate(date);
+    setShowForm(true);
+  };
+
+  const handleAddTask = (title, description, url) => {
+    const newTask = { title, description, url, date: selectedDate };
+    setTasks([...tasks, newTask]);
+    setShowForm(false);
+  };
+
+  const handleTaskClick = task => {
+    setSelectedTask(task);
+  };
+
+  const handleModalClose = () => {
+    setSelectedTask(null);
   };
 
   return (
-    <div className="App">
-      <h1>React Calendar Example</h1>
-      <Calendar
-        onChange={onChange}
-        value={date}
-      />
+    <div className="Tasks">
+      <h1>Calendario de Tareas</h1>
+      <Calendar onChange={handleDateChange} value={selectedDate} />
+      {showForm && (
+        <FormularioTarea onAddTask={handleAddTask} onCancel={() => setShowForm(false)} />
+      )}
+      {selectedTask && <ModalTarea task={selectedTask} onClose={handleModalClose} />}
     </div>
   );
 }
 
-export default App;
+export default Tasks;
