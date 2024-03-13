@@ -34,7 +34,12 @@ function Tasks() {
       <h1>Calendario de Tareas</h1>
       <Calendar onChange={handleDateChange} value={selectedDate} />
       {showForm && (
-        <FormularioTarea onAddTask={handleAddTask} onCancel={() => setShowForm(false)} />
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close" onClick={() => setShowForm(false)}>&times;</span>
+            <FormularioTarea onAddTask={handleAddTask} onCancel={() => setShowForm(false)} />
+          </div>
+        </div>
       )}
       {selectedTask && <ModalTarea task={selectedTask} onClose={handleModalClose} />}
     </div>

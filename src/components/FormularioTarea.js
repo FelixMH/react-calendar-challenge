@@ -5,34 +5,11 @@ function FormularioTarea({ onAddTask, onCancel }) {
   const [description, setDescription] = useState('');
   const [url, setUrl] = useState('');
 
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   if (!title.trim()) return;
-  //   onAddTask(title, description, url);
-  //   setTitle('');
-  //   setDescription('');
-  //   setUrl('');
-  // };
-
-
-
   return (
     <div className='md:w-2/5 mx-auto mt-10'>
       <h2 className='font-black text-3xl text-center uppercase'>Administrador</h2>
 
       <form className='bg-white shadow-xl rounded-lg py-10 px-5 mb-10'>
-        {/* Input de dia ( tipo fecha) eliminado por el momento. */}
-        {/* <div className='mb-5'>
-          <label htmlFor="day" className='block text-gray-700 uppercase font-bold'>Dia</label>
-
-          <input 
-            id='day'
-            type="date"
-            placeholder='Dia'
-            className='border-2 w-full p-2 mt-2 rounded-md placeholder-gray-500 text-black'
-          />
-        </div> */}
-        
         {/* 2do input */}
         <div className='mb-5'>
           <label htmlFor="title" className='block text-gray-700 uppercase font-bold'>Título</label>
@@ -150,27 +127,7 @@ function FormularioTarea({ onAddTask, onCancel }) {
       </form>
 
     </div>
-    // <div className="container">
-    //   <h2>Agregar Tarea</h2>
-    //   <form onSubmit={handleSubmit}>
-    //     <div className="form-group">
-    //       <label>Título:</label>
-    //       <input type="text" value={title} onChange={e => setTitle(e.target.value)} />
-    //     </div>
-    //     <div className="form-group">
-    //       <label>Descripción:</label>
-    //       <textarea value={description} onChange={e => setDescription(e.target.value)} />
-    //     </div>
-    //     <div className="form-group">
-    //       <label>URL:</label>
-    //       <input type="text" value={url} onChange={e => setUrl(e.target.value)} />
-    //     </div>
-    //     <div className="form-buttons">
-    //       <button type="submit">Guardar</button>
-    //       <button type="button" onClick={onCancel}>Cancelar</button>
-    //     </div>
-    //   </form>
-    // </div>
+
   );
 }
 
