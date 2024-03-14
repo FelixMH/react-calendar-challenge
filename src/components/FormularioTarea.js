@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function FormularioTarea({ onAddTask, onCancel }) {
+function FormularioTarea({ onAddTask, onCancel, selectedDate }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [url, setUrl] = useState("");
@@ -11,17 +11,21 @@ function FormularioTarea({ onAddTask, onCancel }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const formattedDate = selectedDate.toISOString().split('T')[0];
+
     const taskData = {
-      title: title,
-      description: description,
-      url: url,
+      title,
+      description,
+      url,
       typefk: type,
-      fecha: null,
+      fecha: formattedDate,
       hora: hour,
     };
 
+    console.log("Datos de la tarea a enviar:", taskData);
+
     try {
-      await axios.post("/tarea", [taskData]);
+      await axios.post("189.168.129.101:5550/tarea", taskData);
       onAddTask(taskData);
       setTitle("");
       setDescription("");
@@ -174,6 +178,8 @@ function FormularioTarea({ onAddTask, onCancel }) {
             Agregar Tarea
           </button>
         </div>
+
+        
       </form>
     </div>
   );

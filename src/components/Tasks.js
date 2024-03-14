@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import FormularioTarea from './FormularioTarea';
 import ModalTarea from './ModalTarea';
+import axios from 'axios';
 import 'react-calendar/dist/Calendar.css';
 
 function Tasks() {
@@ -15,9 +16,16 @@ function Tasks() {
     setShowForm(true);
   };
 
-  const handleAddTask = (taskData) => {
-    setTasks([...tasks, taskData]);
-    setShowForm(false);
+  const handleAddTask = async (taskData) => {
+    try {
+      const formattedDate = selectedDate.toISOString().split('T')[0];
+      const taskWithDate = { ...taskData, fecha: formattedDate };
+      await axios.post("/tarea", taskWithDate);
+      setTasks([...tasks, taskData]);
+      setShowForm(false);
+    } catch (error) {
+      console.error("Error al enviar la tarea:", error);
+    }
   };
 
   const handleTaskClick = task => {
@@ -36,7 +44,12 @@ function Tasks() {
         <div className="modal">
           <div className="modal-content">
             <span className="close" onClick={() => setShowForm(false)}>&times;</span>
-            <FormularioTarea onAddTask={handleAddTask} onCancel={() => setShowForm(false)} />
+            {}
+            <FormularioTarea
+              onAddTask={handleAddTask}
+              onCancel={() => setShowForm(false)}
+              selectedDate={selectedDate}
+            />
           </div>
         </div>
       )}
