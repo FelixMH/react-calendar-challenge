@@ -13,21 +13,28 @@ function FormularioTarea({ onAddTask, onCancel, selectedDate }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formattedDate = selectedDate.toISOString().split('T')[0];
+    // const formattedDate = selectedDate.toISOString().split('T')[0];
 
     const taskData = {
-      title,
-      description,
-      url,
-      typefk: type,
-      fecha: formattedDate,
+      title: title,
+      description: description,
+      url: url,
+      typeFK: 2,
+      // fecha: formattedDate,
       hora: hour,
     };
 
-    console.log("Datos de la tarea a enviar:", taskData);
+    console.log("Datos de la tarea a enviar:", JSON.stringify(taskData));
 
     try {
-      await axios.post("189.168.129.101:5550/tarea", taskData);
+      // await fetch('http://192.168.0.108/tarea', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify(taskData),
+      // });
+      await axios.post("http://192.168.0.108:5550/tarea", taskData);
       onAddTask(taskData);
       setTitle("");
       setDescription("");
