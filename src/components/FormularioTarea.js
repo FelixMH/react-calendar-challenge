@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
 
 function FormularioTarea({ onAddTask, onCancel, selectedDate }) {
   const [title, setTitle] = useState("");
@@ -38,9 +40,14 @@ function FormularioTarea({ onAddTask, onCancel, selectedDate }) {
   };
 
   return (
-    <div className="md:w-2/5 mx-auto mt-10">
+    <div className="md:w-1/2 mx-auto mt-20">
+
+          <div className="flex justify-end text-4xl text-red-500">
+            <FontAwesomeIcon className="cursor-pointer w-10 mr-0 rounded-xl bg-none shadow-xl" icon={faClose} onClick={onCancel} />
+          </div>
+
       <h2 className="font-black text-3xl text-center uppercase">
-        Administrador
+        { title ? "Editar Tarea" : "Crea una nueva Tarea" }
       </h2>
 
       <form
@@ -61,7 +68,6 @@ function FormularioTarea({ onAddTask, onCancel, selectedDate }) {
             type="text"
             placeholder="Título"
             className="border-2 w-full p-2 mt-2 rounded-md placeholder-gray-500 text-black"
-            value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
