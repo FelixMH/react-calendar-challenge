@@ -20,9 +20,19 @@ function FormularioTarea({ onAddTask, onCancel, selectedDate }) {
       description: description,
       url: url,
       typeFK: 2,
-      // fecha: formattedDate,
+      fecha: selectedDate.toISOString().split("T")[0], 
       hora: hour,
     };
+
+ const getDateColorClass = () => {
+    if (type === 1) {
+      return "text-blue-500"; // Azul para typeFK = 1
+    } else if (type === 2) {
+      return "text-red-500"; // Rojo para typeFK = 2
+    } else {
+      return ""; // Sin estilo por defecto
+    }
+  };
 
     console.log("Datos de la tarea a enviar:", JSON.stringify(taskData));
 
